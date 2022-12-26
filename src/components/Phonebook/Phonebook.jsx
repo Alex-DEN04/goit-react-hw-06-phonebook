@@ -35,17 +35,19 @@ const validationSchema = Yup.object().shape({
 });
 
 export const ContactForm = ({ onFormSubmitHandler }) => {
-  const { contacts } = useSelector(state => state.addContact);
+  const { contacts } = useSelector(state => state.myValue);
   const dispatch = useDispatch();
   const handleSubmit = (values, actions) => {
     values.id = nanoid();
+    actions.resetForm();
     for (const contact of contacts) {
       if (contact.name.toLowerCase() === values.name.toLowerCase()) {
+        // actions.resetForm();
         return alert(`${values.name} is already in contacts`);
       }
     }
     dispatch(addContact(values));
-    actions.resetForm();
+    // actions.resetForm();
   };
 
   return (

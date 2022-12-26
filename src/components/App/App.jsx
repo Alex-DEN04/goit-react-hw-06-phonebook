@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 // import { useDispatch } from 'react-redux';
 
 // import useLocalStorage from 'components/Hooks/Hooks';
@@ -10,7 +10,7 @@ import Title from '../Title/Title';
 
 export default function App() {
   // const [contacts, setContacts] = useLocalStorage('contacts', []);
-  const [filtered, setFilter] = useState('');
+  // const [filtered, setFilter] = useState('');
 
   // const dispatch = useDispatch();
 
@@ -36,9 +36,9 @@ export default function App() {
   //   // setContacts([data, ...contacts]);
   // };
 
-  const changeFilter = event => {
-    setFilter(event.currentTarget.value);
-  };
+  // const changeFilter = event => {
+  //   setFilter(event.currentTarget.value);
+  // };
 
   // const normolizedFilter = filtered.toLowerCase();
   // const filteredContacts = contacts.filter(contact =>
@@ -52,7 +52,7 @@ export default function App() {
         <ContactForm></ContactForm>
         {/* <ContactForm onFormSubmitHandler={() => dispatch(addContact())}></ContactForm> */}
         <Title title={'Contacts'}></Title>
-        <Filter value={filtered} onChange={changeFilter}></Filter>
+        <Filter ></Filter>
         <ContactList
           // items={filteredContacts}
           // onDeleteContact={removeContact}
