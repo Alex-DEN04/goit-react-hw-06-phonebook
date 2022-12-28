@@ -35,7 +35,7 @@ const validationSchema = Yup.object().shape({
 });
 
 export const ContactForm = ({ onFormSubmitHandler }) => {
-  const { contacts } = useSelector(state => state.myValue);
+  const contacts = useSelector(state => state.myValue);
   const dispatch = useDispatch();
   const handleSubmit = (values, actions) => {
     values.id = nanoid();

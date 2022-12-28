@@ -52,10 +52,10 @@ export default function App() {
         <ContactForm></ContactForm>
         {/* <ContactForm onFormSubmitHandler={() => dispatch(addContact())}></ContactForm> */}
         <Title title={'Contacts'}></Title>
-        <Filter ></Filter>
+        <Filter></Filter>
         <ContactList
-          // items={filteredContacts}
-          // onDeleteContact={removeContact}
+        // items={filteredContacts}
+        // onDeleteContact={removeContact}
         ></ContactList>
       </div>
     </>
