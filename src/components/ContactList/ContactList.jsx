@@ -5,11 +5,13 @@ import { useSelector } from 'react-redux';
 import Contact from '../Contact/Contact';
 
 export default function ContactList () {
-  const contacts = useSelector(state => state.myValue);
+  const contacts  = useSelector(state => state.myValue.contacts);
+  // const { filters } = useSelector(state => state.myValue);
   console.log(contacts);
+  // console.log(filters);
   return (
     <Box as="ul">
-      {contacts.map(contact => (
+      {contacts && contacts.map(contact => (
         <Contact
           key={contact.id}
           item={contact}

@@ -2,7 +2,7 @@ import { Box } from 'components/Box';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
-import { filteredContacts } from '../../redux/store';
+import { filteredContacts } from 'redux/contactsSlice';
 import { Label, Input } from './Filter.styled';
 
 export default function Filter({ value, onChange }) {

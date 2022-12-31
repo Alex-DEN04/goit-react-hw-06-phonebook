@@ -1,38 +1,49 @@
-import { configureStore, createAction, createReducer } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
+import storage from 'redux-persist/lib/storage'
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist'
 
-const contactInitialState = [
-  {
-    name: 'Олександр Левчук',
-    number: '29246351',
-    id: 'lCNa0IYui62vlieMobYlU',
-  },
-  { name: 'Martin Holst', number: '324679', id: 'Pbn58dGzjQLy13_ztVIyQ' },
-  { name: 'Erik Hansen ', number: '546980', id: 'ZPRUnu5Ww3qt6CrE6wMfZ' },
-  { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-  { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-];
+import { myReduser } from './contactsSlice';
 
-export const addContact = createAction('contact/addContact');
-export const deleteContact = createAction('contact/deleteContact');
-export const filteredContacts = createAction('contact/filteredContacts');
+const persistConfig = {
+  key: 'root',
+  storage,
+  // whitelist: ['contacts']
+}
 
-const myReduser = createReducer(contactInitialState, {
-  [addContact]: (state, action) => {
-    state.unshift(action.payload);
-  },
-  [deleteContact]: (state, action) => {
-    const index = state.findIndex(item => item.id === action.payload);
-    state.splice(index, 1);
-  },
-  [filteredContacts]: (state, action) => {
-    // const normolizedFilter = filtered.toLowerCase();
-    // console.log(state.contacts)
-    // console.log(object)
-    // state.filterValue = action.payload;
-    return state.filter(contact => contact.name.toLowerCase().includes(action.payload.toLowerCase())
-    )
-  },
-});
+// const contactInitialState = {
+//   contacts: [],
+//   filter: '',
+// };
+
+// export const addContact = createAction('contact/addContact');
+// export const deleteContact = createAction('contact/deleteContact');
+// export const filteredContacts = createAction('contact/filteredContacts');
+
+// const myReduser = createReducer(contactInitialState, {
+//   [addContact]: (state, action) => {
+//     state.contacts.unshift(action.payload);
+//   },
+//   [deleteContact]: (state, action) => {
+//     const index = state.contacts.findIndex(item => item.id === action.payload);
+//     state.contacts.splice(index, 1);
+//   },
+//   [filteredContacts]: (state, action) => {
+//     // const normolizedFilter = filtered.toLowerCase();
+//     // console.log(state.contacts)
+//     // console.log(object)
+//     // state.filterValue = action.payload;
+//     state.contacts.filter(contact => contact.name.toLowerCase().includes(action.payload.toLowerCase()))
+//   },
+// });
 // const addReducer = createReducer(contactInitialState, {
 //   [addContact]: (state, action) => {state.contacts.unshift(action.payload)}
 
@@ -46,12 +57,22 @@ const myReduser = createReducer(contactInitialState, {
 //   },
 // });
 
+const persistedReducer = persistReducer(persistConfig, myReduser)
+
+
 export const store = configureStore({
   reducer: {
-    myValue: myReduser,
+    myValue: persistedReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
+export const persistor = persistStore(store)
 // export const toggleCompleted = createAction("tasks/toggleCompleted");
 
 // export const setStatusFilter = createAction('filters/setStatusFilter');
