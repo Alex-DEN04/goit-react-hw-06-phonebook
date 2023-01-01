@@ -6,16 +6,16 @@ import { filteredContacts } from 'redux/contactsSlice';
 import { Label, Input } from './Filter.styled';
 
 export default function Filter({ value, onChange }) {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   // const contacts = useSelector(state => state.myValue)
   const handleChange = event => {
     console.log(event.target.value);
     // contacts.filter(contact =>
     //   contact.name.toLowerCase().includes(event.target.value.toLowerCase())
     // );
-  
-    dispatch(filteredContacts(event.target.value))
-  }
+
+    dispatch(filteredContacts(event.target.value));
+  };
 
   return (
     <Box ml={5} gap={3}>

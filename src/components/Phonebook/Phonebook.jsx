@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from '../../redux/contactsSlice'
+import { addContact } from '../../redux/contactsSlice';
 
 import {
   FormStyled,
@@ -35,7 +35,7 @@ const validationSchema = Yup.object().shape({
 });
 
 export const ContactForm = ({ onFormSubmitHandler }) => {
-  const {contacts} = useSelector(state => state.myValue);
+  const contacts = useSelector(state => state.contacts);
   const dispatch = useDispatch();
   const handleSubmit = (values, actions) => {
     values.id = nanoid();

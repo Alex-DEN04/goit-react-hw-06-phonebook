@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import storage from 'redux-persist/lib/storage'
+import storage from 'redux-persist/lib/storage';
 import {
   persistStore,
   persistReducer,
@@ -9,7 +9,7 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from 'redux-persist'
+} from 'redux-persist';
 
 import { myReduser } from './contactsSlice';
 
@@ -17,7 +17,7 @@ const persistConfig = {
   key: 'root',
   storage,
   // whitelist: ['contacts']
-}
+};
 
 // const contactInitialState = {
 //   contacts: [],
@@ -57,14 +57,11 @@ const persistConfig = {
 //   },
 // });
 
-const persistedReducer = persistReducer(persistConfig, myReduser)
-
+const persistedReducer = persistReducer(persistConfig, myReduser);
 
 export const store = configureStore({
-  reducer: {
-    myValue: persistedReducer,
-  },
-  middleware: (getDefaultMiddleware) =>
+  reducer: persistedReducer,
+  middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
@@ -72,7 +69,7 @@ export const store = configureStore({
     }),
 });
 
-export const persistor = persistStore(store)
+export const persistor = persistStore(store);
 // export const toggleCompleted = createAction("tasks/toggleCompleted");
 
 // export const setStatusFilter = createAction('filters/setStatusFilter');
