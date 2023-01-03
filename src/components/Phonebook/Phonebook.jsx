@@ -2,7 +2,6 @@ import React from 'react';
 import { nanoid } from 'nanoid';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from '../../redux/contactsSlice';
 
@@ -34,7 +33,7 @@ const validationSchema = Yup.object().shape({
   number: Yup.string().min(4).max(10).required(),
 });
 
-export const ContactForm = ({ onFormSubmitHandler }) => {
+export const ContactForm = () => {
   const contacts = useSelector(state => state.contacts);
   const dispatch = useDispatch();
   const handleSubmit = (values, actions) => {
@@ -42,12 +41,10 @@ export const ContactForm = ({ onFormSubmitHandler }) => {
     actions.resetForm();
     for (const contact of contacts) {
       if (contact.name.toLowerCase() === values.name.toLowerCase()) {
-        // actions.resetForm();
         return alert(`${values.name} is already in contacts`);
       }
     }
     dispatch(addContact(values));
-    // actions.resetForm();
   };
 
   return (
@@ -68,8 +65,4 @@ export const ContactForm = ({ onFormSubmitHandler }) => {
       </FormStyled>
     </Formik>
   );
-};
-
-ContactForm.propTypes = {
-  onFormSubmitHandler: PropTypes.func,
 };

@@ -4,8 +4,7 @@ import { useDispatch } from 'react-redux';
 import { deleteContact } from '../../redux/contactsSlice';
 import { Item, Button } from './Contact.styled';
 
-export default function Contact({ item, onDeleteContact }) {
-  // const deleteContact = useSelector(state => state.deleteContact);
+export default function Contact({ item }) {
   const dispatch = useDispatch();
 
   return (
@@ -20,5 +19,4 @@ export default function Contact({ item, onDeleteContact }) {
 
 Contact.propTypes = {
   item: PropTypes.objectOf(PropTypes.string),
-  onDeleteContact: PropTypes.func,
 };

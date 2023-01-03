@@ -19,23 +19,7 @@ const contactsSlice = createSlice({
       state.contacts.splice(index, 1);
     },
     filteredContacts: (state, action) => {
-      // const normolizedFilter = filtered.toLowerCase();
-      // console.log(state.contacts)
-      // console.log(object)
-      // state.filterValue = action.payload;
-      
-      state.contacts.filter(contact => {
-          console.log(contact)
-          const name = contact.name.toLowerCase();
-          const payload = action.payload.toLowerCase();
-              const result = name.includes(payload);
-              console.log(result)
-              return state.filter = result;
-      })
-        if (!state.filter) {
-          return state.contacts
-        }
-        
+      state.filter = action.payload;
     },
   },
 });

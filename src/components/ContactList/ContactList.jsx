@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { Box } from 'components/Box';
 import { useSelector } from 'react-redux';
 
@@ -6,24 +5,21 @@ import Contact from '../Contact/Contact';
 
 export default function ContactList() {
   const contacts = useSelector(state => state.contacts);
-  // const { filters } = useSelector(state => state.myValue);
-  console.log(contacts);
-  // console.log(filters);
+  const filter = useSelector(state => state.filter);
+  const normolizedFilter = filter.toLowerCase();
+  const filteredContacts = filter ? contacts.filter(contact =>
+    contact.name.toLowerCase().includes(normolizedFilter)
+  ) : contacts;
+
   return (
     <Box as="ul">
       {contacts &&
-        contacts.map(contact => (
+        filteredContacts.map(contact => (
           <Contact
             key={contact.id}
             item={contact}
-            // onDeleteContact={onDeleteContact}
           ></Contact>
         ))}
     </Box>
   );
 }
-
-ContactList.propTypes = {
-  item: PropTypes.objectOf(PropTypes.string),
-  onDeleteContact: PropTypes.func,
-};
