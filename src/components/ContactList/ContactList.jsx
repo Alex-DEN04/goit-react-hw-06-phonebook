@@ -5,9 +5,9 @@ import Contact from '../Contact/Contact';
 
 export default function ContactList() {
   const contacts = useSelector(state => state.contacts);
-  const filter = useSelector(state => state.filter);
-  const normolizedFilter = filter.toLowerCase();
-  const filteredContacts = filter ? contacts.filter(contact =>
+  const filtered = useSelector(state => state.filter);
+  const normolizedFilter = filtered.toLowerCase();
+  const filteredContacts = filtered ? contacts.filter(contact =>
     contact.name.toLowerCase().includes(normolizedFilter)
   ) : contacts;
 
