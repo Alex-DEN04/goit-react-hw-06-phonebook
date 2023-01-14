@@ -11,8 +11,7 @@ export default function App() {
         <ContactForm></ContactForm>
         <Title title={'Contacts'}></Title>
         <Filter></Filter>
-        <ContactList
-        ></ContactList>
+        <ContactList></ContactList>
       </div>
     </>
   );

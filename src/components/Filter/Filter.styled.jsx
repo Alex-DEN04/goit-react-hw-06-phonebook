@@ -8,7 +8,7 @@ export const Label = styled.label`
   color: ${p => p.theme.colors.black};
   padding: ${p => p.theme.space[0]}px;
   margin: ${p => p.theme.space[0]}px;
-  margin-right: ${p => p.theme.space[3]}px; ;
+  margin-right: ${p => p.theme.space[3]}px;
 `;
 
 export const Input = styled.input`

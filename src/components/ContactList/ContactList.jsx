@@ -6,19 +6,17 @@ import Contact from '../Contact/Contact';
 export default function ContactList() {
   const contacts = useSelector(state => state.contacts);
   const filtered = useSelector(state => state.filter);
-  const normolizedFilter = filtered.toLowerCase();
-  const filteredContacts = filtered ? contacts.filter(({name}) =>
-    name.toLowerCase().includes(normolizedFilter)
-  ) : contacts;
+  const filteredContacts = filtered
+    ? contacts.filter(({ name }) =>
+        name.toLowerCase().includes(filtered.toLowerCase())
+      )
+    : contacts;
 
   return (
     <Box as="ul">
       {contacts &&
         filteredContacts.map(contact => (
-          <Contact
-            key={contact.id}
-            item={contact}
-          ></Contact>
+          <Contact key={contact.id} item={contact}></Contact>
         ))}
     </Box>
   );
