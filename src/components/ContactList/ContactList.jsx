@@ -1,18 +1,19 @@
 import { Box } from 'components/Box';
 import { useSelector } from 'react-redux';
+import { getContacts, getFilter } from 'redux/selectors';
 
 import Contact from '../Contact/Contact';
 
 export default function ContactList() {
-  const items = useSelector(state => state.contacts);
-  const filter = useSelector(state => state.filter);
+  const items = useSelector(getContacts);
+  const filterValue = useSelector(getFilter);
 
   const getFilterContacts = () => {
-    if (!filter) {
+    if (!filterValue) {
       return items;
     }
     const filteredContacts = items.filter(item => {
-      const normolizedFilter = filter.toLowerCase();
+      const normolizedFilter = filterValue.toLowerCase();
       const normalizedName = item.name.toLowerCase();
       const result = normalizedName.includes(normolizedFilter);
       return result;
