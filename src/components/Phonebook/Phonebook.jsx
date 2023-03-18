@@ -4,6 +4,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from '../../redux/contactsSlice';
+import { getContacts } from 'redux/selectors';
 
 import {
   FormStyled,
@@ -13,6 +14,7 @@ import {
   Label,
   Button,
 } from './Phonebook.styled';
+
 
 const FormError = ({ name }) => {
   return (
@@ -34,7 +36,8 @@ const validationSchema = Yup.object().shape({
 });
 
 export const ContactForm = () => {
-  const contacts = useSelector(state => state.contacts);
+  const contacts = useSelector(getContacts);
+  // console.log(contacts)
   const dispatch = useDispatch();
   const handleSubmit = (values, actions) => {
     values.id = nanoid();

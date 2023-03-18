@@ -24,7 +24,7 @@ export default function ContactList() {
 
   return (
     <Box as="ul">
-      {items &&
+      {contacts &&
         contacts.map(contact => (
           <Contact key={contact.id} item={contact}></Contact>
         ))}
