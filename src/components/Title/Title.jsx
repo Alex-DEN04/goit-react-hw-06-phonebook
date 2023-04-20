@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import { TitleStyled } from './Title.styled';
 
-export default function Title({ title }) {
+export const Title = ({ title }) => {
   return (
     <>
       <TitleStyled>{title}</TitleStyled>

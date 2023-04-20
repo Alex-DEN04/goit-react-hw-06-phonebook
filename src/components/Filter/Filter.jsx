@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { filteredContacts } from 'redux/contactsSlice';
 import { Label, Input } from './Filter.styled';
 
-export default function Filter() {
+export const Filter = () => {
   const dispatch = useDispatch();
 
   return (

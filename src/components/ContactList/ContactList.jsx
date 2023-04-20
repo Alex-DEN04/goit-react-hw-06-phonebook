@@ -1,10 +1,10 @@
 import { Box } from 'components/Box';
 import { useSelector } from 'react-redux';
+
 import { getContacts, getFilter } from 'redux/selectors';
+import { Contact } from '../Contact/Contact';
 
-import Contact from '../Contact/Contact';
-
-export default function ContactList() {
+export const ContactList = () => {
   const items = useSelector(getContacts);
   const filterValue = useSelector(getFilter);
 

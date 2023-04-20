@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
-import { deleteContact } from '../../redux/contactsSlice';
+import { deleteContact } from 'redux/contactsSlice';
 import { Item, Button } from './Contact.styled';
 
-export default function Contact({ item }) {
+export const Contact = ({ item: {id, name, number} }) => {
   const dispatch = useDispatch();
 
   return (
     <Item>
-      {item.name}: {item.number}
-      <Button type="button" onClick={() => dispatch(deleteContact(item.id))}>
+      {name}: {number}
+      <Button type="button" onClick={() => dispatch(deleteContact(id))}>
         Delete
       </Button>
     </Item>
@@ -18,5 +18,7 @@ export default function Contact({ item }) {
 }
 
 Contact.propTypes = {
-  item: PropTypes.objectOf(PropTypes.string),
+  id: PropTypes.string,
+  name: PropTypes.string,
+  number: PropTypes.string,
 };
