@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/contactsSlice';
 import { Item, Button } from './Contact.styled';
 
-export const Contact = ({ item: {id, name, number} }) => {
+export const Contact = ({ item: { id, name, number } }) => {
   const dispatch = useDispatch();
 
   return (
@@ -15,7 +15,7 @@ export const Contact = ({ item: {id, name, number} }) => {
       </Button>
     </Item>
   );
-}
+};
 
 Contact.propTypes = {
   id: PropTypes.string,
