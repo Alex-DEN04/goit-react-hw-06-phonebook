@@ -18,7 +18,5 @@ export const Contact = ({ item: { id, name, number } }) => {
 };
 
 Contact.propTypes = {
-  id: PropTypes.string,
-  name: PropTypes.string,
-  number: PropTypes.string,
+  item: PropTypes.objectOf(PropTypes.string),
 };

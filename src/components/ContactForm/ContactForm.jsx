@@ -39,11 +39,14 @@ export const ContactForm = () => {
   const handleSubmit = (values, { resetForm }) => {
     values.id = nanoid();
     resetForm();
-    for (const contact of contacts) {
-      if (contact.name.toLowerCase() === values.name.toLowerCase()) {
-        return alert(`${values.name} is already in contacts`);
-      }
+
+    const existsName = contacts.some(
+      ({ name }) => name.toLowerCase() === values.name.toLowerCase()
+    );
+    if (existsName) {
+      return alert(`${values.name} is already in contacts`);
     }
+
     dispatch(addContact(values));
   };
 
